@@ -4,19 +4,32 @@ import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
-  const [unlocked, setUnlocked] = useState(false);
+  const [step, setStep] = useState(1);
   const [dateInput, setDateInput] = useState('');
-  const [error, setError] = useState(false);
+  const [movieInput, setMovieInput] = useState('');
+  const [dateError, setDateError] = useState(false);
+  const [movieError, setMovieError] = useState(false);
 
   const correctDate = '22.02.2025';
+  const correctMovie = 'пила';
 
-  const handleSubmit = () => {
+  const handleDateSubmit = () => {
     if (dateInput === correctDate) {
-      setError(false);
-      setUnlocked(true);
+      setDateError(false);
+      setStep(2);
     } else {
-      setError(true);
-      setTimeout(() => setError(false), 2000);
+      setDateError(true);
+      setTimeout(() => setDateError(false), 2000);
+    }
+  };
+
+  const handleMovieSubmit = () => {
+    if (movieInput.toLowerCase() === correctMovie) {
+      setMovieError(false);
+      setStep(3);
+    } else {
+      setMovieError(true);
+      setTimeout(() => setMovieError(false), 2000);
     }
   };
 
@@ -39,7 +52,7 @@ const Index = () => {
         ))}
       </div>
 
-      {!unlocked ? (
+      {step === 1 && (
         <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
           <div
             className="max-w-md w-full text-center space-y-8"
@@ -73,29 +86,128 @@ const Index = () => {
                   placeholder="22.02.2025"
                   value={dateInput}
                   onChange={(e) => setDateInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSubmit()}
+                  onKeyPress={(e) => e.key === 'Enter' && handleDateSubmit()}
                   className={`text-center text-xl py-6 bg-white/80 backdrop-blur border-2 ${
-                    error ? 'border-red-400 animate-[heartbeat_0.5s_ease-in-out]' : 'border-rose-300'
+                    dateError ? 'border-red-400 animate-[heartbeat_0.5s_ease-in-out]' : 'border-rose-300'
                   } focus:border-rose-400 focus:ring-rose-400`}
                 />
-                {error && (
+                {dateError && (
                   <p className="text-red-500 text-sm">
                     Попробуй вспомнить ещё раз... 💕
                   </p>
                 )}
                 <Button
-                  onClick={handleSubmit}
+                  onClick={handleDateSubmit}
                   className="w-full py-6 text-lg bg-gradient-to-r from-rose-400 to-orange-400 hover:from-rose-500 hover:to-orange-500 text-white shadow-lg"
                   style={{ animation: 'glow 2s ease-in-out infinite' }}
                 >
-                  Открыть письмо
+                  Продолжить
                   <Icon name="Heart" className="ml-2" size={20} />
                 </Button>
               </div>
             </div>
           </div>
         </div>
-      ) : (
+      )}
+
+      {step === 2 && (
+        <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+          <div
+            className="max-w-md w-full text-center space-y-8"
+            style={{ animation: 'fadeIn 1s ease-out' }}
+          >
+            <div
+              className="inline-block text-8xl mb-4"
+              style={{ animation: 'float 3s ease-in-out infinite' }}
+            >
+              🎬
+            </div>
+
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-rose-600 mb-4">
+                Еще один вопрос...
+              </h1>
+              <p className="text-xl text-rose-500 font-light">
+                Какой фильм мы смотрели на первой встрече?
+              </p>
+            </div>
+
+            <div className="space-y-4 mt-8">
+              <div className="space-y-4">
+                <Input
+                  type="text"
+                  placeholder="Название фильма"
+                  value={movieInput}
+                  onChange={(e) => setMovieInput(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleMovieSubmit()}
+                  className={`text-center text-xl py-6 bg-white/80 backdrop-blur border-2 ${
+                    movieError ? 'border-red-400 animate-[heartbeat_0.5s_ease-in-out]' : 'border-rose-300'
+                  } focus:border-rose-400 focus:ring-rose-400`}
+                />
+                {movieError && (
+                  <p className="text-red-500 text-sm">
+                    Не совсем так... Попробуй ещё раз 🎥
+                  </p>
+                )}
+                <Button
+                  onClick={handleMovieSubmit}
+                  className="w-full py-6 text-lg bg-gradient-to-r from-rose-400 to-orange-400 hover:from-rose-500 hover:to-orange-500 text-white shadow-lg"
+                  style={{ animation: 'glow 2s ease-in-out infinite' }}
+                >
+                  Продолжить
+                  <Icon name="Film" className="ml-2" size={20} />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {step === 3 && (
+        <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+          <div
+            className="max-w-md w-full text-center space-y-8"
+            style={{ animation: 'fadeIn 1s ease-out' }}
+          >
+            <div
+              className="inline-block text-8xl mb-4"
+              style={{ animation: 'float 3s ease-in-out infinite' }}
+            >
+              💝
+            </div>
+
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-rose-600 mb-4">
+                Последний шаг...
+              </h1>
+              <p className="text-xl text-rose-500 font-light">
+                Готова узнать, что я приготовил для тебя?
+              </p>
+            </div>
+
+            <div className="space-y-4 mt-8">
+              <Button
+                onClick={() => setStep(4)}
+                className="w-full py-6 text-lg bg-gradient-to-r from-rose-400 to-orange-400 hover:from-rose-500 hover:to-orange-500 text-white shadow-lg"
+                style={{ animation: 'glow 2s ease-in-out infinite' }}
+              >
+                Открыть валентинку
+                <Icon name="Gift" className="ml-2" size={20} />
+              </Button>
+              <Button
+                onClick={() => setStep(4)}
+                variant="outline"
+                className="w-full py-6 text-lg border-2 border-rose-300 text-rose-600 hover:bg-rose-50"
+              >
+                Не открывать (но всё равно открыть 😏)
+                <Icon name="HeartCrack" className="ml-2" size={20} />
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {step === 4 && (
         <div
           className="relative z-10 min-h-screen flex items-center justify-center p-4"
           style={{ animation: 'fadeIn 1.5s ease-out' }}
