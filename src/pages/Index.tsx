@@ -8,7 +8,7 @@ const Index = () => {
   const [dateInput, setDateInput] = useState('');
   const [error, setError] = useState(false);
 
-  const correctDate = '14.02.2023';
+  const correctDate = '22.02.2025';
 
   const handleSubmit = () => {
     if (dateInput === correctDate) {
@@ -70,7 +70,7 @@ const Index = () => {
               <div className="space-y-4">
                 <Input
                   type="text"
-                  placeholder="14.02.2023"
+                  placeholder="22.02.2025"
                   value={dateInput}
                   onChange={(e) => setDateInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSubmit()}
