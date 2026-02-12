@@ -178,7 +178,7 @@ const Index = () => {
 
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold text-rose-600 mb-4">
-                Последний шаг...
+                Ещё один шаг...
               </h1>
               <p className="text-xl text-rose-500 font-light">
                 Готова узнать, что я приготовил для тебя?
@@ -208,6 +208,50 @@ const Index = () => {
       )}
 
       {step === 4 && (
+        <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+          <div
+            className="max-w-md w-full text-center space-y-8"
+            style={{ animation: 'fadeIn 1s ease-out' }}
+          >
+            <div
+              className="inline-block text-8xl mb-4"
+              style={{ animation: 'float 3s ease-in-out infinite' }}
+            >
+              🤔
+            </div>
+
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-rose-600 mb-4">
+                Уверена?
+              </h1>
+              <p className="text-xl text-rose-500 font-light">
+                Уверена, что хочешь открыть валентинку?
+              </p>
+            </div>
+
+            <div className="space-y-4 mt-8">
+              <Button
+                onClick={() => setStep(5)}
+                className="w-full py-6 text-lg bg-gradient-to-r from-rose-400 to-orange-400 hover:from-rose-500 hover:to-orange-500 text-white shadow-lg"
+                style={{ animation: 'glow 2s ease-in-out infinite' }}
+              >
+                Да, уверена!
+                <Icon name="Check" className="ml-2" size={20} />
+              </Button>
+              <Button
+                onClick={() => setStep(5)}
+                variant="outline"
+                className="w-full py-6 text-lg border-2 border-rose-300 text-rose-600 hover:bg-rose-50"
+              >
+                Нет... но всё равно открою 😊
+                <Icon name="Smile" className="ml-2" size={20} />
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {step === 5 && (
         <div
           className="relative z-10 min-h-screen flex items-center justify-center p-4"
           style={{ animation: 'fadeIn 1.5s ease-out' }}
