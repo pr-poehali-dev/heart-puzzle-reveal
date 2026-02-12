@@ -13,6 +13,16 @@ const Index = () => {
   const correctDate = '22.02.2025';
   const correctMovie = 'пила';
 
+  const flowers = ['🌸', '🌺', '🌹', '🌷', '💐', '🌼'];
+  const fallingFlowers = Array.from({ length: 25 }, (_, i) => ({
+    id: i,
+    emoji: flowers[Math.floor(Math.random() * flowers.length)],
+    left: Math.random() * 100,
+    duration: 10 + Math.random() * 15,
+    swayDuration: 3 + Math.random() * 2,
+    delay: Math.random() * 10,
+  }));
+
   const handleDateSubmit = () => {
     if (dateInput === correctDate) {
       setDateError(false);
@@ -53,24 +63,19 @@ const Index = () => {
       </div>
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => {
-          const flowers = ['🌸', '🌺', '🌹', '🌷', '💐'];
-          const flower = flowers[Math.floor(Math.random() * flowers.length)];
-          return (
-            <div
-              key={`flower-${i}`}
-              className="absolute text-2xl"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `-10vh`,
-                animation: `fall ${10 + Math.random() * 10}s linear infinite, sway ${3 + Math.random() * 2}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 5}s`,
-              }}
-            >
-              {flower}
-            </div>
-          );
-        })}
+        {fallingFlowers.map((flower) => (
+          <div
+            key={`flower-${flower.id}`}
+            className="absolute text-3xl opacity-80"
+            style={{
+              left: `${flower.left}%`,
+              animation: `fall ${flower.duration}s linear infinite, sway ${flower.swayDuration}s ease-in-out infinite`,
+              animationDelay: `${flower.delay}s`,
+            }}
+          >
+            {flower.emoji}
+          </div>
+        ))}
       </div>
 
       {step === 1 && (
