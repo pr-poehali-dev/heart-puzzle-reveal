@@ -225,7 +225,7 @@ const Index = () => {
                 variant="outline"
                 className="w-full py-6 text-lg border-2 border-rose-300 text-rose-600 hover:bg-rose-50"
               >
-                Не открывать (но всё равно открыть 😏)
+                Не открывать
                 <Icon name="HeartCrack" className="ml-2" size={20} />
               </Button>
             </div>
