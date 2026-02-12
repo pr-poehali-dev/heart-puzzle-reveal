@@ -69,7 +69,7 @@ const Index = () => {
             className="absolute text-3xl opacity-80"
             style={{
               left: `${flower.left}%`,
-              animation: `fall ${flower.duration}s linear infinite, sway ${flower.swayDuration}s ease-in-out infinite`,
+              animation: `fall ${flower.duration}s linear infinite`,
               animationDelay: `${flower.delay}s`,
             }}
           >
