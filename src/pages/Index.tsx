@@ -104,7 +104,7 @@ const Index = () => {
               <div className="space-y-4">
                 <Input
                   type="text"
-                  placeholder="22.02.2025"
+                  placeholder="ДД.ММ.ГГГГ"
                   value={dateInput}
                   onChange={(e) => setDateInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleDateSubmit()}
