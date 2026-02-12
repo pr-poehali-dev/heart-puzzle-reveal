@@ -76,7 +76,7 @@ const Index = () => {
 
             <div className="space-y-4 mt-8">
               <p className="text-lg text-rose-600 font-medium">
-                Введи дату нашего первого поцелуя
+                Введи дату нашей первой встречи
               </p>
               <p className="text-sm text-rose-400">(формат: ДД.ММ.ГГГГ)</p>
 
