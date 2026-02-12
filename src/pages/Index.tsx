@@ -52,6 +52,27 @@ const Index = () => {
         ))}
       </div>
 
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => {
+          const flowers = ['🌸', '🌺', '🌹', '🌷', '💐'];
+          const flower = flowers[Math.floor(Math.random() * flowers.length)];
+          return (
+            <div
+              key={`flower-${i}`}
+              className="absolute text-2xl"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `-10vh`,
+                animation: `fall ${10 + Math.random() * 10}s linear infinite, sway ${3 + Math.random() * 2}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 5}s`,
+              }}
+            >
+              {flower}
+            </div>
+          );
+        })}
+      </div>
+
       {step === 1 && (
         <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
           <div
